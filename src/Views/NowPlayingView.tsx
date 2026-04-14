@@ -1,7 +1,7 @@
 import { ImageGrid } from './../components/ImageGrid';
 import { Pagination } from './../components/Pagination';
 import type { MediaResponse } from './../core/Types';
-import { mapToGridData } from './../Helper/mapToGridData';
+import { mapToGridData } from '../mapToGridData.ts/mapToGridData';
 import { useTmdb } from '../Hooks/useTmdb';
 import { useState } from 'react';
 

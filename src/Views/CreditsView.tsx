@@ -1,6 +1,6 @@
 import { ImageGrid } from './../components/ImageGrid';
 import { MOVIE_ENDPOINT } from './../core/Constants';
-import { mapToGridData } from './../Helper/mapToGridData';
+import { mapToGridData } from '../mapToGridData.ts/mapToGridData';
 import { useTmdb } from './../Hooks/useTmdb';
 import { useParams } from 'react-router-dom';
 

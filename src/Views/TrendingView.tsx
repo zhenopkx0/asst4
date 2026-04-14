@@ -1,7 +1,7 @@
 import { ButtonGroup } from './../components/ButtonGroup';
 import { ImageGrid } from './../components/ImageGrid';
 import type { MediaResponse } from './../core/Types';
-import { mapToGridData } from './../Helper/mapToGridData';
+import { mapToGridData } from '../mapToGridData.ts/mapToGridData';
 import { useTmdb } from './../Hooks/useTmdb';
 import { useSearchParams } from 'react-router-dom';
 
