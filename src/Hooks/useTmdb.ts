@@ -1,3 +1,4 @@
+import { API_KEY } from './../core/Constants';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 
@@ -11,7 +12,7 @@ export function useTmdb<T>(url: string, params: Record<string, any>, deps: any[]
       try {
         const response = await axios.get<T>(url, {
           params: {
-            api_key: localStorage.getItem('TMDB_API_KEY'),
+            api_key: API_KEY,
             ...params,
           },
           signal: controller.signal,

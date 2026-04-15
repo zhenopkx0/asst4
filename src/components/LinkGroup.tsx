@@ -4,7 +4,7 @@ type LinkGroupProps = {
   options: Array<{
     label: string;
     to: string;
-    match?: string;
+    match?: string[];
   }>;
 };
 
