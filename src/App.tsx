@@ -8,6 +8,8 @@ import { ReviewsView } from './Views/ReviewsView';
 import { TrendingView } from './Views/TrendingView';
 import { SearchView } from './Views/SearchView';
 import { Route, Routes } from 'react-router-dom';
+import { PopularView } from './Views/PopularView';
+import { TopRatedView } from './Views/TopRatedView';
 
 export const App = () => {
   return (
@@ -15,6 +17,8 @@ export const App = () => {
       <Route path="/" element={<HomeView />} />
       <Route element={<MainLayout />}>
         <Route path="/now-playing" element={<NowPlayingView />} />
+        <Route path="/popular" element={<PopularView />} />
+        <Route path="/top-rated" element={<TopRatedView />} />
         <Route path="/search" element={<SearchView />} />
         <Route path="/movie/:id" element={<MovieView />}>
           <Route path="credits" element={<CreditsView />} />
