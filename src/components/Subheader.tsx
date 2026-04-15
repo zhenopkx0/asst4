@@ -1,16 +1,13 @@
 import { Link } from './Link';
 
-export const Header = () => {
+export const Subheader = () => {
   return (
     <header>
-      <nav className="flex gap-4 p-4 bg-gray-800">
-        <h1 className="text-2xl font-bold text-white-900">TMDB Explorer</h1>
+      <nav className="flex gap-4 p-4 bg-gray-600">
         <Link to="/now-playing">Now Playing</Link>
         <Link to="/popular">Popular</Link>
         <Link to="/top-Rated">Top Rated</Link>
         <Link to="/upcoming">Upcoming</Link>
-        <Link to="/trending?interval=day">Trending</Link>
-        <Link to="/search">Search</Link>
       </nav>
     </header>
   );
