@@ -11,16 +11,19 @@ import { Route, Routes } from 'react-router-dom';
 import { PopularView } from './Views/PopularView';
 import { TopRatedView } from './Views/TopRatedView';
 import { UpcomingView } from './Views/UpcomingView';
+import { MoviesView } from './Views/MoviesView';
 
 export const App = () => {
   return (
     <Routes>
       <Route path="/" element={<HomeView />} />
       <Route element={<MainLayout />}>
-        <Route path="/now-playing" element={<NowPlayingView />} />
-        <Route path="/popular" element={<PopularView />} />
-        <Route path="/top-rated" element={<TopRatedView />} />
-        <Route path="/upcoming" element={<UpcomingView />} />
+        <Route path="/movies" element={<MoviesView />}>
+          <Route path="now-playing" element={<NowPlayingView />} />
+          <Route path="popular" element={<PopularView />} />
+          <Route path="top-rated" element={<TopRatedView />} />
+          <Route path="upcoming" element={<UpcomingView />} />
+        </Route>
         <Route path="/search" element={<SearchView />} />
         <Route path="/movie/:id" element={<MovieView />}>
           <Route path="credits" element={<CreditsView />} />
