@@ -14,6 +14,11 @@ import { UpcomingView } from "./Views/UpcomingView";
 import { MoviesView } from "./Views/MoviesView";
 import { TrendingTVView } from "./Views/TrendingTVView";
 import { TrendingView } from "./Views/TrendingView";
+import { TVView } from "./Views/TV/TVView";
+import { AiringTodayView } from "./Views/TV/AiringTodayView";
+import { OnTheAirView } from "./Views/TV/OnTheAirView";
+import { PopularTVView } from "./Views/TV/PopularTVView";
+import { TopRatedTVView } from "./Views/TV/TopRatedTVView";
 
 export const App = () => {
   return (
@@ -34,6 +39,12 @@ export const App = () => {
         <Route path="/trending" element={<TrendingView />}>
           <Route path="movie" element={<TrendingMovieView />} />
           <Route path="tv" element={<TrendingTVView />} />
+        </Route>
+        <Route path="/tv" element={<TVView />}>
+          <Route path="airing-today" element={<AiringTodayView />} />
+          <Route path="on-the-air" element={<OnTheAirView />} />
+          <Route path="popular" element={<PopularTVView />} />
+          <Route path="top-rated" element={<TopRatedTVView />} />
         </Route>
       </Route>
       <Route path="*" element={<ErrorView />} />
