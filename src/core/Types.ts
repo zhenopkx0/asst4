@@ -14,6 +14,15 @@ export type GridData = {
     total_pages: number;
   };
   
+  export type TvResponse = {
+    results: Array<{
+      id: number;
+      name: string;
+      poster_path: string;
+    }>;
+    total_pages: number;
+  };
+
   export type CreditsResponse = {
     cast: Array<{
       id: number;

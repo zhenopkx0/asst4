@@ -1,17 +1,19 @@
-import { MainLayout } from './Layouts/MainLayout';
-import { ErrorView } from './Views/ErrorView';
-import { HomeView } from './Views/HomeView';
-import { CreditsView } from './Views/CreditsView';
-import { MovieView } from './Views/MovieView';
-import { NowPlayingView } from './Views/NowPlayingView';
-import { ReviewsView } from './Views/ReviewsView';
-import { TrendingView } from './Views/TrendingView';
-import { SearchView } from './Views/SearchView';
-import { Route, Routes } from 'react-router-dom';
-import { PopularView } from './Views/PopularView';
-import { TopRatedView } from './Views/TopRatedView';
-import { UpcomingView } from './Views/UpcomingView';
-import { MoviesView } from './Views/MoviesView';
+import { MainLayout } from "./Layouts/MainLayout";
+import { ErrorView } from "./Views/ErrorView";
+import { HomeView } from "./Views/HomeView";
+import { CreditsView } from "./Views/CreditsView";
+import { MovieView } from "./Views/MovieView";
+import { NowPlayingView } from "./Views/NowPlayingView";
+import { ReviewsView } from "./Views/ReviewsView";
+import { TrendingMovieView } from "./Views/TrendingMovieView";
+import { SearchView } from "./Views/SearchView";
+import { Route, Routes } from "react-router-dom";
+import { PopularView } from "./Views/PopularView";
+import { TopRatedView } from "./Views/TopRatedView";
+import { UpcomingView } from "./Views/UpcomingView";
+import { MoviesView } from "./Views/MoviesView";
+import { TrendingTVView } from "./Views/TrendingTVView";
+import { TrendingView } from "./Views/TrendingView";
 
 export const App = () => {
   return (
@@ -29,7 +31,10 @@ export const App = () => {
           <Route path="credits" element={<CreditsView />} />
           <Route path="reviews" element={<ReviewsView />} />
         </Route>
-        <Route path="/trending" element={<TrendingView />} />
+        <Route path="/trending" element={<TrendingView />}>
+          <Route path="movie" element={<TrendingMovieView />} />
+          <Route path="tv" element={<TrendingTVView />} />
+        </Route>
       </Route>
       <Route path="*" element={<ErrorView />} />
     </Routes>
