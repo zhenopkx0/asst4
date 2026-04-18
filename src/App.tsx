@@ -19,6 +19,10 @@ import { AiringTodayView } from "./Views/TV/AiringTodayView";
 import { OnTheAirView } from "./Views/TV/OnTheAirView";
 import { PopularTVView } from "./Views/TV/PopularTVView";
 import { TopRatedTVView } from "./Views/TV/TopRatedTVView";
+import { TvGenreView } from "./Views/Genre/TvGenreView";
+import { MovieGenreView } from "./Views/Genre/MovieGenreView";
+import { GenreView } from "./Views/Genre/GenreView";
+import { TrailerView } from "./Views/TrailerView";
 
 export const App = () => {
   return (
@@ -35,6 +39,7 @@ export const App = () => {
         <Route path="/movie/:id" element={<MovieView />}>
           <Route path="credits" element={<CreditsView />} />
           <Route path="reviews" element={<ReviewsView />} />
+          <Route path="trailer" element={<TrailerView />} />
         </Route>
         <Route path="/trending" element={<TrendingView />}>
           <Route path="movie" element={<TrendingMovieView />} />
@@ -45,6 +50,10 @@ export const App = () => {
           <Route path="on-the-air" element={<OnTheAirView />} />
           <Route path="popular" element={<PopularTVView />} />
           <Route path="top-rated" element={<TopRatedTVView />} />
+        </Route>
+        <Route path="/genre" element={<GenreView />}>
+          <Route path="tv/:id" element={<TvGenreView />} />
+          <Route path="movies/:id" element={<MovieGenreView />} />
         </Route>
       </Route>
       <Route path="*" element={<ErrorView />} />

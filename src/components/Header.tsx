@@ -8,6 +8,7 @@ export const Header = () => {
         <Link to="/movies/now-playing">Movies</Link>
         <Link to="/tv/airing-today">TV</Link>
         <Link to="/trending/movie?interval=day">Trending</Link>
+        <Link to="/genre">Genres</Link>
         <Link to="/search">Search</Link>
       </nav>
     </header>

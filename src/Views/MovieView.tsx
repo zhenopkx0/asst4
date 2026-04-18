@@ -5,6 +5,7 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { FaCalendarAlt } from 'react-icons/fa';
 import { Outlet, useNavigate, useParams } from 'react-router-dom';
+import { Modal } from '../components/Modal';
 
 type DetailRepsonse = {
   id: number;
@@ -29,7 +30,6 @@ export const MovieView = () => {
   const { id } = useParams();
   const [movie, setMovie] = useState<DetailRepsonse | null>(null);
   const [loading, setLoading] = useState(false);
-  const [trailer, setTrailer] = useState<string | null>(null);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -44,14 +44,6 @@ export const MovieView = () => {
           signal: controller.signal,
         });
 
-        const trailerVideo =
-          response.data.videos?.results.find(
-            (video) => video.site === 'YouTube' && video.type === 'Trailer' && video.name?.toLowerCase().includes('official')
-          ) || response.data.videos?.results.find((video) => video.site === 'YouTube' && video.type === 'Trailer');
-
-        if (trailerVideo) {
-          setTrailer(trailerVideo.key);
-        }
         setMovie(response.data);
       } catch (error) {
         console.error('Failed to fetch movie detail:', error);
@@ -70,6 +62,7 @@ export const MovieView = () => {
   }
 
   return (
+    <Modal onClose={() => navigate(-1)}>
     <section className="max-w-[1200px] mx-auto p-10">
       <div
         className="h-[300px] bg-cover bg-center mt-4"
@@ -91,20 +84,11 @@ export const MovieView = () => {
             {movie.release_date}
           </p>
           <p className="text-gray-300 leading-relaxed">{movie.overview}</p>
-          {trailer && (
-            <div className="aspect-video">
-              <iframe
-                className="w-full h-full rounded-xl"
-                src={`https://www.youtube.com/embed/${trailer}`}
-                title="Movie Trailer"
-                allowFullScreen
-              />
-            </div>
-          )}
           <LinkGroup
             options={[
               { label: 'Credits', to: 'credits' },
               { label: 'Reviews', to: 'reviews' },
+              { label: 'Trailer', to: 'trailer' },
             ]}
           />
         </div>
@@ -113,5 +97,6 @@ export const MovieView = () => {
         <Outlet />
       </section>
     </section>
+    </Modal>
   );
 };
