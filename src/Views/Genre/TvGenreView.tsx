@@ -5,11 +5,11 @@ import { mapToGridData } from '../../mapToGridData.ts/mapToGridData';
 import { useTmdb } from '../../Hooks/useTmdb';
 import { useState } from 'react';
 
-const ENDPOINT = 'https://api.themoviedb.org/3/genre/tv/list';
+const ENDPOINT = 'https://api.themoviedb.org/3/discover/tv';
 
-export const TvGenreView = () => {
+export const TVGenreView = ({id}: {id: number | null }) => {
   const [page, setPage] = useState<number>(1);
-  const { data } = useTmdb<TvResponse>(ENDPOINT, { page }, [page]);
+  const { data } = useTmdb<TvResponse>(ENDPOINT, { page, with_genres: id }, [page, id]);
 
   const gridData = mapToGridData(data?.results ?? [], (result) => ({
     id: result.id,

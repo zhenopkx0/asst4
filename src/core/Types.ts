@@ -66,3 +66,5 @@ export type GridData = {
     total_pages: number;
     total_results: number;
   };
+
+  
