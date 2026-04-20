@@ -6,7 +6,7 @@ import { MovieView } from "./Views/MovieView";
 import { NowPlayingView } from "./Views/NowPlayingView";
 import { ReviewsView } from "./Views/ReviewsView";
 import { TrendingMovieView } from "./Views/TrendingMovieView";
-import { SearchView } from "./Views/SearchView";
+import { SearchView } from "./Views/Search/SearchView";
 import { Route, Routes } from "react-router-dom";
 import { PopularView } from "./Views/PopularView";
 import { TopRatedView } from "./Views/TopRatedView";
@@ -53,9 +53,7 @@ export const App = () => {
           <Route path="popular" element={<PopularTVView />} />
           <Route path="top-rated" element={<TopRatedTVView />} />
         </Route>
-        <Route path="/genre" element={<GenreView setSelectedGenre={setSelectedGenre} />}>
-        <Route path="movies" element={<MovieGenreView id={selectedGenre}/>} />
-        <Route path="tv" element={< TVGenreView id={selectedGenre} />} />
+        <Route path="/genre/:media/:genre" element={<GenreView />}>
         {/*idk man*/}
         </Route>
       </Route>

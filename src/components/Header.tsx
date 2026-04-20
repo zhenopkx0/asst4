@@ -1,4 +1,4 @@
-import { Link } from './Link';
+import { Link } from "./Link";
 
 export const Header = () => {
   return (
@@ -8,7 +8,9 @@ export const Header = () => {
         <Link to="/movies/now-playing">Movies</Link>
         <Link to="/tv/airing-today">TV</Link>
         <Link to="/trending/movie?interval=day">Trending</Link>
-        <Link to="/genre">Genres</Link>
+        <Link to="/genre/movies/action" match={["/genre/:media/:genre"]}>
+          Genres
+        </Link>
         <Link to="/search">Search</Link>
       </nav>
     </header>

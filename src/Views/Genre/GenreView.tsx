@@ -1,33 +1,99 @@
-import { Link, Outlet } from "react-router-dom";
-import { MovieGenres, TvGenres } from "../../core/Constants";
+import { data, Outlet, useNavigate, useParams } from "react-router-dom";
+import { movieGenres, tvGenres } from "../../core/Constants";
+import { ImageGrid } from "../../components/ImageGrid";
+import { Pagination } from "../../components/Pagination";
+import { Link } from "../../components/Link";
+import { useState } from "react";
+import type { MediaResponse } from "../../core/Types";
+import { useTmdb } from "../../Hooks/useTmdb";
+import { mapToGridData } from "../../mapToGridData.ts/mapToGridData";
+import { LinkGroup } from "../../components/LinkGroup";
 
+export const GENRE_MAP = {
+  movies: {
+    action: 28,
+    adventure: 12,
+    animation: 16,
+    crime: 80,
+    family: 10751,
+    fantasy: 14,
+    history: 36,
+    horror: 27,
+    mystery: 9648,
+    romance: 10749,
+    "sci-fi": 878,
+  },
+  tv: {
+    action: 10759,
+    animation: 16,
+    comedy: 35,
+    crime: 80,
+    documentary: 99,
+    drama: 18,
+    family: 10751,
+    kids: 10762,
+    mystery: 9648,
+    "sci-fi": 10765,
+  },
+};
 
-export const GenreView = ({
-  setSelectedGenre,
-}: {
-  setSelectedGenre: (id: number) => void;
-}) => {
+export const GenreView = () => {
+  const navigate = useNavigate();
+  const { media, genre } = useParams();
+  const MOVIES_ENDPOINT = "https://api.themoviedb.org/3/discover/movie";
+  const TV_ENDPOINT = "https://api.themoviedb.org/3/discover/tv";
+
+  const [page, setPage] = useState<number>(1);
+  const { data } = useTmdb<MediaResponse>(
+    media === "movies" ? MOVIES_ENDPOINT : TV_ENDPOINT,
+    { page, with_genres: GENRE_MAP[media][genre] },
+    [page, genre, media]
+  );
+
+  const gridData = mapToGridData(data?.results ?? [], (result) => ({
+    id: result.id,
+    imagePath: result.poster_path,
+    primaryText: result.original_title,
+  }));
+
+  if (!data) {
+    return <p className="text-center text-gray-400">Loading...</p>;
+  }
+
   return (
-    <>
-    <div>
-      {MovieGenres.map((genre) => (
-        <button key={genre.id} className="px-4 py-2 bg-gray-700 rounded hover:bg-gray-400 transition-colors" onClick={()=> setSelectedGenre(genre.id)}>
-        {genre.name}
-        </button>
-      ))}
-    </div>
-    <div>
-      {TvGenres.map((genre) => (
-        <button key={genre.id} className="px-4 py-2 bg-gray-700 rounded hover:bg-gray-400 transition-colors" onClick={()=> setSelectedGenre(genre.id)}>
-        {genre.name}
-        </button>
-      ))}
-    </div>
-    <div>
-      <Link to="/genre/movies" className="px-6 py-3 text-lg font-semibold bg-blue-600 text-white rounded-lg shadow-md hover:bg-blue-500 transition-colors">Movies</Link>
-      <Link to="/genre/tv" className="px-6 py-3 text-lg font-semibold bg-blue-600 text-white rounded-lg shadow-md hover:bg-blue-500 transition-colors">TV</Link>
-      <Outlet/>
-      </div>
-    </>
+    <section className="max-w-[1200px] mx-auto p-5 space-y-5">
+      <LinkGroup
+        options={[
+          {
+            label: "Movies",
+            to: "/genre/movies/action",
+          },
+          { label: "TV", to: "/genre/tv/action" },
+        ]}
+      />
+      {media === "movies" ? (
+        <div>
+          {movieGenres.map((genre) => (
+            <Link key={genre.value} to={`/genre/movies/${genre.value}`}>
+              {genre.name}
+            </Link>
+          ))}
+        </div>
+      ) : (
+        <div>
+          {tvGenres.map((genre) => (
+            <button
+              key={genre.value}
+              className="px-4 py-2 bg-gray-700 rounded hover:bg-gray-400 transition-colors"
+              onClick={() => navigate(`/genre/tv/${genre.value}`)}
+            >
+              {genre.name}
+            </button>
+          ))}
+        </div>
+      )}
+      <ImageGrid results={gridData} getHref={(id) => `/movie/${id}`} />
+      <Pagination page={page} maxPages={data.total_pages} onClick={setPage} />
+    </section>
   );
 };

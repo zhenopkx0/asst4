@@ -1,9 +1,9 @@
-import { ImageGrid } from './../components/ImageGrid';
-import { Pagination } from './../components/Pagination';
-import { SearchBar } from './../components/SearchBar';
-import { mapToGridData } from '../mapToGridData.ts/mapToGridData';
-import { useDebounce } from './../Hooks/useDebounce';
-import { useTmdb } from './../Hooks/useTmdb';
+import { ImageGrid } from '../../components/ImageGrid';
+import { Pagination } from '../../components/Pagination';
+import { SearchBar } from '../../components/SearchBar';
+import { mapToGridData } from '../../mapToGridData.ts/mapToGridData';
+import { useDebounce } from '../../Hooks/useDebounce';
+import { useTmdb } from '../../Hooks/useTmdb';
 import { useEffect, useRef, useState } from 'react';
 
 type SearchResponse = {
