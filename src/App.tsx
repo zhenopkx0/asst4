@@ -24,6 +24,7 @@ import { TrailerView } from "./Views/TrailerView";
 import { ViewTV } from "./Views/tvStuff/ViewTV";
 import { SeasonsView } from "./Views/tvStuff/SeaonsView";
 import { EpisodesView } from "./Views/tvStuff/EpisodesView";
+import { PersonView } from "./Views/PersonView";
 
 export const App = () => {
   return (
@@ -37,6 +38,8 @@ export const App = () => {
           <Route path="upcoming" element={<UpcomingView />} />
         </Route>
         <Route path="/search" element={<SearchView />} />
+        <Route path="/person/:id" element={<PersonView />} />
+        {/*person stuff !!*/}
         <Route path="/movie/:id" element={<MovieView />}>
           <Route path="credits" element={<CreditsView />} />
           <Route path="reviews" element={<ReviewsView />} />
