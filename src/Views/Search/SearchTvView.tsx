@@ -10,13 +10,13 @@ type SearchMovieResponse = {
   results: Array<{
     id: number;
     poster_path: string | null;
-    original_title: string;
+    original_name: string;
   }>;
   total_pages: number;
   total_results: number;
 };
 
-const ENDPOINT = "https://api.themoviedb.org/3/search/movie";
+const ENDPOINT = "https://api.themoviedb.org/3/search/tv";
 const DELAY = 500;
 
 export const SearchView = () => {
@@ -33,7 +33,7 @@ export const SearchView = () => {
   const gridData = mapToGridData(data?.results ?? [], (result) => ({
     id: result.id,
     imagePath: result.poster_path,
-    primaryText: result.original_title,
+    primaryText: result.original_name,
   }));
 
   useEffect(() => {

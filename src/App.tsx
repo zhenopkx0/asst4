@@ -6,7 +6,7 @@ import { MovieView } from "./Views/MovieView";
 import { NowPlayingView } from "./Views/NowPlayingView";
 import { ReviewsView } from "./Views/ReviewsView";
 import { TrendingMovieView } from "./Views/TrendingMovieView";
-import { SearchView } from "./Views/Search/SearchView";
+import { SearchView } from "./Views/Search/SearchPeopleView";
 import { Route, Routes } from "react-router-dom";
 import { PopularView } from "./Views/PopularView";
 import { TopRatedView } from "./Views/TopRatedView";
@@ -21,12 +21,8 @@ import { PopularTVView } from "./Views/TV/PopularTVView";
 import { TopRatedTVView } from "./Views/TV/TopRatedTVView";
 import { GenreView } from "./Views/Genre/GenreView";
 import { TrailerView } from "./Views/TrailerView";
-import { MovieGenreView } from "./Views/Genre/MovieGenreView";
-import { TVGenreView } from "./Views/Genre/TvGenreView";
-import { useState } from "react";
 
 export const App = () => {
-  const [selectedGenre, setSelectedGenre] = useState<number | null>(null);
   return (
     <Routes>
       <Route path="/" element={<HomeView />} />
@@ -54,7 +50,7 @@ export const App = () => {
           <Route path="top-rated" element={<TopRatedTVView />} />
         </Route>
         <Route path="/genre/:media/:genre" element={<GenreView />}>
-        {/*idk man*/}
+          {/*idk man*/}
         </Route>
       </Route>
       <Route path="*" element={<ErrorView />} />

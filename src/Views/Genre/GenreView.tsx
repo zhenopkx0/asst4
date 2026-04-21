@@ -1,4 +1,4 @@
-import { data, Outlet, useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { movieGenres, tvGenres } from "../../core/Constants";
 import { ImageGrid } from "../../components/ImageGrid";
 import { Pagination } from "../../components/Pagination";
@@ -38,12 +38,12 @@ export const GENRE_MAP = {
 };
 
 export const GenreView = () => {
-  const navigate = useNavigate();
   const { media, genre } = useParams();
   const MOVIES_ENDPOINT = "https://api.themoviedb.org/3/discover/movie";
   const TV_ENDPOINT = "https://api.themoviedb.org/3/discover/tv";
 
   const [page, setPage] = useState<number>(1);
+
   const { data } = useTmdb<MediaResponse>(
     media === "movies" ? MOVIES_ENDPOINT : TV_ENDPOINT,
     { page, with_genres: GENRE_MAP[media][genre] },
@@ -82,13 +82,9 @@ export const GenreView = () => {
       ) : (
         <div>
           {tvGenres.map((genre) => (
-            <button
-              key={genre.value}
-              className="px-4 py-2 bg-gray-700 rounded hover:bg-gray-400 transition-colors"
-              onClick={() => navigate(`/genre/tv/${genre.value}`)}
-            >
+            <Link key={genre.value} to={`/genre/tv/${genre.value}`}>
               {genre.name}
-            </button>
+            </Link>
           ))}
         </div>
       )}
