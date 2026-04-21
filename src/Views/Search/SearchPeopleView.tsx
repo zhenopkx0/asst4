@@ -1,10 +1,10 @@
-import { ImageGrid } from '../../components/ImageGrid';
-import { Pagination } from '../../components/Pagination';
-import { SearchBar } from '../../components/SearchBar';
-import { mapToGridData } from '../../mapToGridData.ts/mapToGridData';
-import { useDebounce } from '../../Hooks/useDebounce';
-import { useTmdb } from '../../Hooks/useTmdb';
-import { useEffect, useRef, useState } from 'react';
+import { ImageGrid } from "../../components/ImageGrid";
+import { Pagination } from "../../components/Pagination";
+import { SearchBar } from "../../components/SearchBar";
+import { mapToGridData } from "../../mapToGridData.ts/mapToGridData";
+import { useDebounce } from "../../Hooks/useDebounce";
+import { useTmdb } from "../../Hooks/useTmdb";
+import { useEffect, useRef, useState } from "react";
 
 type SearchResponse = {
   results: Array<{
@@ -16,16 +16,20 @@ type SearchResponse = {
   total_results: number;
 };
 
-const ENDPOINT = 'https://api.themoviedb.org/3/search/person';
+const ENDPOINT = "https://api.themoviedb.org/3/search/person";
 const DELAY = 500;
 
 export const SearchView = () => {
-  const [query, setQuery] = useState('');
-  const [message, setMessage] = useState('');
+  const [query, setQuery] = useState("");
+  const [message, setMessage] = useState("");
   const [page, setPage] = useState<number>(1);
   const maxPages = useRef<number>(1);
   const debouncedQuery = useDebounce(query, DELAY);
-  const { data } = useTmdb<SearchResponse>(ENDPOINT, { query: debouncedQuery, page }, [debouncedQuery, page]);
+  const { data } = useTmdb<SearchResponse>(
+    ENDPOINT,
+    { query: debouncedQuery, page },
+    [debouncedQuery, page]
+  );
   const gridData = mapToGridData(data?.results ?? [], (result) => ({
     id: result.id,
     imagePath: result.profile_path,
@@ -33,7 +37,7 @@ export const SearchView = () => {
   }));
 
   useEffect(() => {
-    setMessage('');
+    setMessage("");
     setPage(1);
   }, [debouncedQuery]);
 
@@ -47,7 +51,11 @@ export const SearchView = () => {
       {data.results.length ? (
         <>
           <ImageGrid results={gridData} getHref={(id) => `/person/${id}`} />
-          <Pagination page={page} maxPages={maxPages.current} onClick={setPage} />
+          <Pagination
+            page={page}
+            maxPages={maxPages.current}
+            onClick={setPage}
+          />
         </>
       ) : (
         message && <p className="text-center text-gray-400">{message}</p>

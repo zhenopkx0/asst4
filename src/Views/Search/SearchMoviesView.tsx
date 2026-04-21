@@ -19,7 +19,7 @@ type SearchMovieResponse = {
 const ENDPOINT = "https://api.themoviedb.org/3/search/movie";
 const DELAY = 500;
 
-export const SearchView = () => {
+export const SearchMoviesView = () => {
   const [query, setQuery] = useState("");
   const [message, setMessage] = useState("");
   const [page, setPage] = useState<number>(1);
@@ -50,7 +50,7 @@ export const SearchView = () => {
       <SearchBar value={query} onChange={setQuery} message={message} />
       {data.results.length ? (
         <>
-          <ImageGrid results={gridData} getHref={(id) => `/person/${id}`} />
+          <ImageGrid results={gridData} getHref={(id) => `/movie/${id}`} />
           <Pagination
             page={page}
             maxPages={maxPages.current}

@@ -10,6 +10,9 @@ export const Header = () => {
         <Link to="/trending/movie?interval=day">Trending</Link>
         <Link to="/genre/movies/action">Genres</Link>
         <Link to="/search">Search</Link>
+        <Link to="/search/people">People</Link>
+        <Link to="/search/movies">Movies</Link>
+        <Link to="/search/tv">TV</Link>
       </nav>
     </header>
   );

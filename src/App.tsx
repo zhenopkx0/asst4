@@ -27,6 +27,8 @@ import { EpisodesView } from "./Views/tvStuff/EpisodesView";
 import { PersonView } from "./Views/PersonView";
 import { CareerView } from "./Views/CareerView";
 import { ImagesView } from "./Views/ImagesView";
+import { SearchTvView } from "./Views/Search/SearchTvView";
+import { SearchMoviesView } from "./Views/Search/SearchMoviesView";
 
 export const App = () => {
   return (
@@ -39,7 +41,11 @@ export const App = () => {
           <Route path="top-rated" element={<TopRatedView />} />
           <Route path="upcoming" element={<UpcomingView />} />
         </Route>
+        {/*search stuff !!*/}
         <Route path="/search" element={<SearchView />} />
+        <Route path="/search/people" element={<SearchView />} />
+        <Route path="/search/movies" element={<SearchMoviesView />} />
+        <Route path="/search/tv" element={<SearchTvView />} />
         <Route path="/person/:id" element={<PersonView />}>
           <Route path="career" element={<CareerView />} />
           <Route path="images" element={<ImagesView />} />
