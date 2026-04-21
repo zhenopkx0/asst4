@@ -21,6 +21,9 @@ import { PopularTVView } from "./Views/TV/PopularTVView";
 import { TopRatedTVView } from "./Views/TV/TopRatedTVView";
 import { GenreView } from "./Views/Genre/GenreView";
 import { TrailerView } from "./Views/TrailerView";
+import { ViewTV } from "./Views/tvStuff/ViewTV";
+import { SeasonsView } from "./Views/tvStuff/SeaonsView";
+import { EpisodesView } from "./Views/tvStuff/EpisodesView";
 
 export const App = () => {
   return (
@@ -35,6 +38,14 @@ export const App = () => {
         </Route>
         <Route path="/search" element={<SearchView />} />
         <Route path="/movie/:id" element={<MovieView />}>
+          <Route path="credits" element={<CreditsView />} />
+          <Route path="reviews" element={<ReviewsView />} />
+          <Route path="trailer" element={<TrailerView />} />
+        </Route>
+        {/*tv stuff idk*/}
+        <Route path="/tv/:id" element={<ViewTV />}>
+          <Route path="seasons" element={<SeasonsView />} />
+          <Route path="season/:season_number" element={<EpisodesView />} />
           <Route path="credits" element={<CreditsView />} />
           <Route path="reviews" element={<ReviewsView />} />
           <Route path="trailer" element={<TrailerView />} />
