@@ -25,6 +25,8 @@ import { ViewTV } from "./Views/tvStuff/ViewTV";
 import { SeasonsView } from "./Views/tvStuff/SeaonsView";
 import { EpisodesView } from "./Views/tvStuff/EpisodesView";
 import { PersonView } from "./Views/PersonView";
+import { CareerView } from "./Views/CareerView";
+import { ImagesView } from "./Views/ImagesView";
 
 export const App = () => {
   return (
@@ -38,7 +40,10 @@ export const App = () => {
           <Route path="upcoming" element={<UpcomingView />} />
         </Route>
         <Route path="/search" element={<SearchView />} />
-        <Route path="/person/:id" element={<PersonView />} />
+        <Route path="/person/:id" element={<PersonView />}>
+          <Route path="career" element={<CareerView />} />
+          <Route path="images" element={<ImagesView />} />
+        </Route>
         {/*person stuff !!*/}
         <Route path="/movie/:id" element={<MovieView />}>
           <Route path="credits" element={<CreditsView />} />

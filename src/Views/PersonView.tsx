@@ -1,7 +1,8 @@
 import { useTmdb } from "../Hooks/useTmdb";
-import { useParams } from "react-router-dom";
+import { Outlet, useParams } from "react-router-dom";
 import { Modal } from "../components/Modal";
 import { useNavigate } from "react-router-dom";
+import { LinkGroup } from "../components/LinkGroup";
 
 type PersonResponse = {
   id: number;
@@ -9,6 +10,9 @@ type PersonResponse = {
   profile_path: string | null;
   birthday: string;
   biography: string;
+  place_of_birth: string;
+  known_for_department: string;
+  popularity: number;
 };
 
 const PERSON_ENDPOINT = "https://api.themoviedb.org/3/person";
@@ -29,6 +33,13 @@ export const PersonView = () => {
     <Modal onClose={() => navigate(-1)}>
       <section className="min-h-screen bg-gray-900 text-white">
         <h2 className="text-2xl font-bold mb-6">{data.name}</h2>
+        <p className="text-gray-400 mt-2">Birthday: {data.birthday}</p>
+        <p className="text-gray-400 mt-2">
+          Place of Birth: {data.place_of_birth}
+        </p>
+        <p className="text-gray-400 mt-2">
+          Known For: {data.known_for_department}
+        </p>
 
         <img
           src={`https://image.tmdb.org/t/p/w300${data.profile_path}`}
@@ -37,8 +48,15 @@ export const PersonView = () => {
         />
 
         <p className="text-gray-300">{data.biography}</p>
-        <p className="text-gray-400 mt-2">Birthday: {data.birthday}</p>
+        <p className="text-gray-400 mt-4">Popularity: {data.popularity}</p>
       </section>
+      <LinkGroup
+        options={[
+          { label: "Career", to: "career" },
+          { label: "Images", to: "images" },
+        ]}
+      />
+      <Outlet />
     </Modal>
   );
 };
