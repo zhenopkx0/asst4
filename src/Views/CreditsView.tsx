@@ -1,8 +1,8 @@
-import { ImageGrid } from './../components/ImageGrid';
-import { MOVIE_ENDPOINT } from './../core/Constants';
-import { mapToGridData } from '../mapToGridData.ts/mapToGridData';
-import { useTmdb } from './../Hooks/useTmdb';
-import { useParams } from 'react-router-dom';
+import { ImageGrid } from "./../components/ImageGrid";
+import { MOVIE_ENDPOINT } from "./../core/Constants";
+import { mapToGridData } from "../mapToGridData.ts/mapToGridData";
+import { useTmdb } from "./../Hooks/useTmdb";
+import { useParams } from "react-router-dom";
 
 type CreditsResponse = {
   cast: Array<{
@@ -15,7 +15,11 @@ type CreditsResponse = {
 
 export const CreditsView = () => {
   const { id } = useParams();
-  const { data } = useTmdb<CreditsResponse>(`${MOVIE_ENDPOINT}/${id}/credits`, {}, []);
+  const { data } = useTmdb<CreditsResponse>(
+    `${MOVIE_ENDPOINT}/${id}/credits`,
+    {},
+    []
+  );
 
   const gridData = mapToGridData(data?.cast ?? [], (result) => ({
     id: result.id,
@@ -31,8 +35,10 @@ export const CreditsView = () => {
   return (
     <section className="min-h-screen bg-gray-900 text-white">
       <h2 className="text-2xl font-bold mb-6">Credits</h2>
-      {!data.cast.length && <p className="text-gray-400 text-center">No credits available.</p>}
-      <ImageGrid results={gridData} />
+      {!data.cast.length && (
+        <p className="text-gray-400 text-center">No credits available.</p>
+      )}
+      <ImageGrid results={gridData} getHref={(id) => `/person/${id}`} />
     </section>
   );
 };

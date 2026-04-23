@@ -23,13 +23,6 @@ export const MoviesView = () => {
     ? TOPRATED_ENDPOINT
     : UPCOMINGENDPOINT;
 
-  const type = pathname.includes("popular")
-    ? "Popular"
-    : pathname.includes("now-playing")
-    ? "Now-Playing"
-    : pathname.includes("top-rated")
-    ? "Top-Rated"
-    : "Upcoming";
   const { data } = useTmdb<MediaResponse>(ENDPOINT, { page }, [page, pathname]);
 
   const gridData = mapToGridData(data?.results ?? [], (result) => ({
@@ -47,8 +40,7 @@ export const MoviesView = () => {
       <Subheader />
       <Outlet />
       <section className="max-w-[1200px] mx-auto p-5 space-y-5">
-        <h1 className="text-3xl font-bold mb-4">{type}</h1>
-        <ImageGrid results={gridData} getHref={(id) => `/movies/${id}`} />
+        <ImageGrid results={gridData} getHref={(id) => `/movie/${id}`} />
         <Pagination page={page} maxPages={data.total_pages} onClick={setPage} />
       </section>
     </div>

@@ -23,13 +23,6 @@ export const TelevisionView = () => {
     ? TOPRATED_ENDPOINT
     : AIRINGTODAY_ENDPOINT;
 
-  const type = pathname.includes("popular")
-    ? "Popular"
-    : pathname.includes("on-the-air")
-    ? "On-The-Air"
-    : pathname.includes("top-rated")
-    ? "Top-Rated"
-    : "Airing Today";
   const { data } = useTmdb<TvResponse>(ENDPOINT, { page }, [page, pathname]);
 
   const gridData = mapToGridData(data?.results ?? [], (result) => ({
@@ -47,7 +40,6 @@ export const TelevisionView = () => {
       <TVSubheader />
       <Outlet />
       <section className="max-w-[1200px] mx-auto p-5 space-y-5">
-        <h1 className="text-3xl font-bold mb-4">{type}</h1>
         <ImageGrid results={gridData} getHref={(id) => `/tv/${id}`} />
         <Pagination page={page} maxPages={data.total_pages} onClick={setPage} />
       </section>
