@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import { movieGenres, tvGenres } from "../../core/Constants";
 import { ImageGrid } from "../../components/ImageGrid";
 import { Pagination } from "../../components/Pagination";
@@ -39,8 +39,11 @@ export const GENRE_MAP = {
 
 export const GenreView = () => {
   const { media, genre } = useParams();
+  const { pathname } = useLocation();
   const MOVIES_ENDPOINT = "https://api.themoviedb.org/3/discover/movie";
   const TV_ENDPOINT = "https://api.themoviedb.org/3/discover/tv";
+
+  const type = pathname.includes("tv") ? "tv" : "movie";
 
   const [page, setPage] = useState<number>(1);
 
@@ -88,7 +91,7 @@ export const GenreView = () => {
           ))}
         </div>
       )}
-      <ImageGrid results={gridData} getHref={(id) => `/movie/${id}`} />
+      <ImageGrid results={gridData} getHref={(id) => `/${type}/${id}`} />
       <Pagination page={page} maxPages={data.total_pages} onClick={setPage} />
     </section>
   );
