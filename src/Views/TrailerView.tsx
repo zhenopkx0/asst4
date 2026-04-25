@@ -1,7 +1,7 @@
-import { API_KEY, MOVIE_ENDPOINT } from './../core/Constants';
-import axios from 'axios';
-import { useEffect, useState } from 'react';
-import { Outlet, useParams } from 'react-router-dom';
+import { API_KEY, MOVIE_ENDPOINT, TV_ENDPOINT } from "./../core/Constants";
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { Outlet, useLocation, useParams } from "react-router-dom";
 
 type TrailerResponse = {
   videos?: {
@@ -15,6 +15,8 @@ type TrailerResponse = {
 };
 
 export const TrailerView = () => {
+  const { pathname } = useLocation();
+  const ENDPOINT = pathname.includes("movie") ? MOVIE_ENDPOINT : TV_ENDPOINT;
   const { id } = useParams();
   const [movie, setMovie] = useState<TrailerResponse | null>(null);
   const [loading, setLoading] = useState(false);
@@ -27,22 +29,28 @@ export const TrailerView = () => {
       try {
         setLoading(true);
 
-        const response = await axios.get<TrailerResponse>(`${MOVIE_ENDPOINT}/${id}`, {
-          params: { api_key: API_KEY, append_to_response: 'videos' },
+        const response = await axios.get<TrailerResponse>(`${ENDPOINT}/${id}`, {
+          params: { api_key: API_KEY, append_to_response: "videos" },
           signal: controller.signal,
         });
 
         const trailerVideo =
           response.data.videos?.results.find(
-            (video) => video.site === 'YouTube' && video.type === 'Trailer' && video.name?.toLowerCase().includes('official')
-          ) || response.data.videos?.results.find((video) => video.site === 'YouTube' && video.type === 'Trailer');
+            (video) =>
+              video.site === "YouTube" &&
+              video.type === "Trailer" &&
+              video.name?.toLowerCase().includes("official")
+          ) ||
+          response.data.videos?.results.find(
+            (video) => video.site === "YouTube" && video.type === "Trailer"
+          );
 
         if (trailerVideo) {
           setTrailer(trailerVideo.key);
         }
         setMovie(response.data);
       } catch (error) {
-        console.error('Failed to fetch movie detail:', error);
+        console.error("Failed to fetch movie detail:", error);
       } finally {
         setLoading(false);
       }

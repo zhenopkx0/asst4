@@ -4,7 +4,6 @@ import { HomeView } from "./Views/HomeView";
 import { CreditsView } from "./Views/CreditsView";
 import { MovieView } from "./Views/MovieView";
 import { ReviewsView } from "./Views/ReviewsView";
-import { SearchView } from "./Views/Search/SearchPeopleView";
 import { Route, Routes } from "react-router-dom";
 import { MoviesView } from "./Views/MoviesView";
 import { TrendingView } from "./Views/TrendingView";
@@ -16,8 +15,7 @@ import { EpisodesView } from "./Views/tvStuff/EpisodesView";
 import { PersonView } from "./Views/PersonView";
 import { CareerView } from "./Views/CareerView";
 import { ImagesView } from "./Views/ImagesView";
-import { SearchTvView } from "./Views/Search/SearchTvView";
-import { SearchMoviesView } from "./Views/Search/SearchMoviesView";
+import { SearchView } from "./Views/Search/SearchView";
 import { TelevisionView } from "./Views/TV/TelevisionView";
 
 export const App = () => {
@@ -33,9 +31,10 @@ export const App = () => {
         </Route>
         {/*search stuff !!*/}
         <Route path="/search" element={<SearchView />} />
-        <Route path="/search/people" element={<SearchView />} />
+        {/* <Route path="/search/people" element={<SearchView />} />
         <Route path="/search/movies" element={<SearchMoviesView />} />
-        <Route path="/search/tv" element={<SearchTvView />} />
+        <Route path="/search/tv" element={<SearchTvView />} /> */}
+        {/*search stuff !!*/}
         <Route path="/person/:id" element={<PersonView />}>
           <Route path="career" element={<CareerView />} />
           <Route path="images" element={<ImagesView />} />

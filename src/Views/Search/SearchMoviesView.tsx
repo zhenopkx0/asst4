@@ -47,7 +47,7 @@ export const SearchMoviesView = () => {
 
   return (
     <section className="max-w-[1200px] mx-auto p-10 space-y-5">
-      <SearchBar value={query} onChange={setQuery} message={message} />
+      <SearchBar value={query} onChange={setQuery} />
       {data.results.length ? (
         <>
           <ImageGrid results={gridData} getHref={(id) => `/movie/${id}`} />

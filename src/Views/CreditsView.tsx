@@ -1,8 +1,8 @@
 import { ImageGrid } from "./../components/ImageGrid";
-import { MOVIE_ENDPOINT } from "./../core/Constants";
+import { MOVIE_ENDPOINT, TV_ENDPOINT } from "./../core/Constants";
 import { mapToGridData } from "../mapToGridData.ts/mapToGridData";
 import { useTmdb } from "./../Hooks/useTmdb";
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 
 type CreditsResponse = {
   cast: Array<{
@@ -14,9 +14,11 @@ type CreditsResponse = {
 };
 
 export const CreditsView = () => {
+  const { pathname } = useLocation();
+  const ENDPOINT = pathname.includes("movie") ? MOVIE_ENDPOINT : TV_ENDPOINT;
   const { id } = useParams();
   const { data } = useTmdb<CreditsResponse>(
-    `${MOVIE_ENDPOINT}/${id}/credits`,
+    `${ENDPOINT}/${id}/credits`,
     {},
     []
   );

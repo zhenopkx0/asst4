@@ -1,14 +1,9 @@
-import { useParams } from "react-router-dom";
-import { movieGenres, tvGenres } from "../../core/Constants";
+import { useSearchParams } from "react-router-dom";
 import { ImageGrid } from "../../components/ImageGrid";
 import { Pagination } from "../../components/Pagination";
-import { Link } from "../../components/Link";
-import { useState } from "react";
-import type { MediaResponse } from "../../core/Types";
 import { useTmdb } from "../../Hooks/useTmdb";
 import { mapToGridData } from "../../mapToGridData.ts/mapToGridData";
-import { LinkGroup } from "../../components/LinkGroup";
-import { ButtonGroup } from "../../components/ButtonGroup";
+import { useState } from "react";
 
 type SearchResponse = {
   results: Array<{
@@ -40,16 +35,18 @@ type SearchTvResponse = {
   total_results: number;
 };
 
-export const GenreView = () => {
-  const { type: type } = useParams();
+export const SearchView = () => {
   const MOVIES_ENDPOINT = "https://api.themoviedb.org/3/search/movie";
   const TV_ENDPOINT = "https://api.themoviedb.org/3/search/tv";
   const PERSON_ENDPOINT = "https://api.themoviedb.org/3/search/person";
-
   const [page, setPage] = useState<number>(1);
+  const [searchParams] = useSearchParams();
+
+  const query = searchParams.get("q") ?? "";
+  const type = searchParams.get("type") ?? "movie";
 
   const endpoint =
-    type === "movies"
+    type === "movie"
       ? MOVIES_ENDPOINT
       : type === "tv"
       ? TV_ENDPOINT
@@ -57,14 +54,12 @@ export const GenreView = () => {
 
   const { data } = useTmdb<
     SearchResponse | SearchMovieResponse | SearchTvResponse
-  >(endpoint, { page }, [type, page]);
+  >(endpoint, { page, query }, [type, page, endpoint, query]);
 
   let gridData;
-
-  if (type === "movies") {
+  if (type === "movie") {
     const movieData = data as SearchMovieResponse;
-
-    gridData = mapToGridData(movieData.results, (result) => ({
+    gridData = (movieData?.results ?? []).map((result) => ({
       id: result.id,
       imagePath: result.poster_path,
       primaryText: result.original_title,
@@ -72,7 +67,7 @@ export const GenreView = () => {
   } else if (type === "tv") {
     const tvData = data as SearchTvResponse;
 
-    gridData = mapToGridData(tvData.results, (result) => ({
+    gridData = mapToGridData(tvData.results ?? [], (result) => ({
       id: result.id,
       imagePath: result.poster_path,
       primaryText: result.original_name,
@@ -80,7 +75,7 @@ export const GenreView = () => {
   } else {
     const personData = data as SearchResponse;
 
-    gridData = mapToGridData(personData.results, (result) => ({
+    gridData = mapToGridData(personData.results ?? [], (result) => ({
       id: result.id,
       imagePath: result.profile_path,
       primaryText: result.name,
@@ -93,22 +88,7 @@ export const GenreView = () => {
 
   return (
     <section className="max-w-[1200px] mx-auto p-5 space-y-5">
-      <ButtonGroup options={[
-        { label: "Movies", value: "movies" },
-        { label: "TV", value: "tv" },
-        { label: "People", value: "people" },
-      ]} /> 
-      {type=== "movies" ? (
-        <h2 className="text-2xl font-bold">Movie Results</h2>
-        ) : type === "tv" ? (
-            <h2 className="text-2xl font-bold">TV Results</h2>
-        ) : (
-            <h2 className="text-2xl font-bold">People Results</h2>
-        ) : type === "people" ? (
-                <h2 className="text-2xl font-bold">People Results</h2>
-                ) : null
-            }
-      <ImageGrid results={gridData} getHref={(id) => `/movie/${id}`} />
+      <ImageGrid results={gridData} getHref={(id) => `/${type}/${id}`} />
       <Pagination page={page} maxPages={data.total_pages} onClick={setPage} />
     </section>
   );
