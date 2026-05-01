@@ -1,3 +1,5 @@
+export type SearchType = "movie" | "tv" | "person";
+
 export type GridData = {
     id: number;
     imagePath: string | null;

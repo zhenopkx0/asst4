@@ -1,22 +1,22 @@
 import { MainLayout } from "./Layouts/MainLayout";
-import { ErrorView } from "./Views/ErrorView";
-import { HomeView } from "./Views/HomeView";
-import { CreditsView } from "./Views/CreditsView";
-import { MovieView } from "./Views/MovieView";
-import { ReviewsView } from "./Views/ReviewsView";
+import { ErrorView } from "./views/ErrorView";
+import { HomeView } from "./views/HomeView";
+import { CreditsView } from "./views/CreditsView";
+import { MovieView } from "./views/MovieView";
+import { ReviewsView } from "./views/ReviewsView";
 import { Route, Routes } from "react-router-dom";
-import { MoviesView } from "./Views/MoviesView";
-import { TrendingView } from "./Views/TrendingView";
-import { GenreView } from "./Views/Genre/GenreView";
-import { TrailerView } from "./Views/TrailerView";
-import { ViewTV } from "./Views/tvStuff/ViewTV";
-import { SeasonsView } from "./Views/tvStuff/SeaonsView";
-import { EpisodesView } from "./Views/tvStuff/EpisodesView";
-import { PersonView } from "./Views/PersonView";
-import { CareerView } from "./Views/CareerView";
-import { ImagesView } from "./Views/ImagesView";
-import { SearchView } from "./Views/Search/SearchView";
-import { TelevisionView } from "./Views/TV/TelevisionView";
+import { MoviesView } from "./views/MoviesView";
+import { TrendingView } from "./views/TrendingView";
+import { GenreView } from "./views/Genre/GenreView";
+import { TrailerView } from "./views/TrailerView";
+import { ViewTV } from "./views/tvStuff/ViewTV";
+import { SeasonsView } from "./views/tvStuff/SeaonsView";
+import { EpisodesView } from "./views/tvStuff/EpisodesView";
+import { PersonView } from "./views/PersonView";
+import { CareerView } from "./views/CareerView";
+import { ImagesView } from "./views/ImagesView";
+import { SearchView } from "./views/Search/SearchView";
+import { TelevisionView } from "./views/TV/TelevisionView";
 
 export const App = () => {
   return (

@@ -1,12 +1,15 @@
+import { useState } from "react";
 import { Link } from "./Link";
 import { SearchBar } from "./SearchBar";
+import type { SearchType } from "../core/Types";
+import { ButtonGroup } from "./ButtonGroup";
+import { useNavigate } from "react-router-dom";
 
-type HeaderProps = {
-  query: string;
-  setQuery: (value: string) => void;
-};
+export const Header = () => {
+  const navigate = useNavigate();
+  const [query, setQuery] = useState<string>("");
+  const [type, setType] = useState<SearchType>("movie");
 
-export const Header = ({ query, setQuery }: HeaderProps) => {
   return (
     <header>
       <nav className="flex gap-4 p-4 bg-gray-800">
@@ -15,7 +18,27 @@ export const Header = ({ query, setQuery }: HeaderProps) => {
         <Link to="/tv/airing-today">TV</Link>
         <Link to="/trending/movie?interval=day">Trending</Link>
         <Link to="/genre/movies/action">Genres</Link>
-        <SearchBar value={query} onChange={setQuery} />
+        <div className="flex justify-between items-center gap-3">
+          <SearchBar
+            value={query}
+            onChange={(query) => {
+              setQuery(query);
+              navigate(`/search?q=${query}&type=${type}`);
+            }}
+          />
+          <ButtonGroup
+            value={type}
+            options={[
+              { label: "Movies", value: "movie" },
+              { label: "TV", value: "tv" },
+              { label: "People", value: "person" },
+            ]}
+            onClick={(type) => {
+              setType(type as SearchType);
+              navigate(`/search?q=${query}&type=${type}`);
+            }}
+          />
+        </div>
       </nav>
     </header>
   );
