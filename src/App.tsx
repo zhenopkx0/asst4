@@ -1,22 +1,22 @@
 import { MainLayout } from "./Layouts/MainLayout";
-import { ErrorView } from "./views/ErrorView";
-import { HomeView } from "./views/HomeView";
-import { CreditsView } from "./views/CreditsView";
-import { MovieView } from "./views/MovieView";
-import { ReviewsView } from "./views/ReviewsView";
+import { ErrorView } from "./Views/ErrorView";
+import { HomeView } from "./Views/HomeView";
+import { CreditsView } from "./Views/CreditsView";
+import { MovieView } from "./Views/MovieView";
+import { ReviewsView } from "./Views/ReviewsView";
 import { Route, Routes } from "react-router-dom";
-import { MoviesView } from "./views/MoviesView";
-import { TrendingView } from "./views/TrendingView";
-import { GenreView } from "./views/Genre/GenreView";
-import { TrailerView } from "./views/TrailerView";
-import { ViewTV } from "./views/tvStuff/ViewTV";
-import { SeasonsView } from "./views/tvStuff/SeaonsView";
-import { EpisodesView } from "./views/tvStuff/EpisodesView";
-import { PersonView } from "./views/PersonView";
-import { CareerView } from "./views/CareerView";
-import { ImagesView } from "./views/ImagesView";
-import { SearchView } from "./views/Search/SearchView";
-import { TelevisionView } from "./views/TV/TelevisionView";
+import { MoviesView } from "./Views/MoviesView";
+import { TrendingView } from "./Views/TrendingView";
+import { GenreView } from "./Views/Genre/GenreView";
+import { TrailerView } from "./Views/TrailerView";
+import { ViewTV } from "./Views/tvStuff/ViewTV";
+import { SeasonsView } from "./Views/tvStuff/SeaonsView";
+import { EpisodesView } from "./Views/tvStuff/EpisodesView";
+import { PersonView } from "./Views/PersonView";
+import { CareerView } from "./Views/CareerView";
+import { ImagesView } from "./Views/ImagesView";
+import { SearchView } from "./Views/Search/SearchView";
+import { TelevisionView } from "./Views/TV/TelevisionView";
 
 export const App = () => {
   return (
@@ -29,23 +29,16 @@ export const App = () => {
           <Route path="top-rated" element={<MoviesView />} />
           <Route path="upcoming" element={<MoviesView />} />
         </Route>
-        {/*search stuff !!*/}
         <Route path="/search" element={<SearchView />} />
-        {/* <Route path="/search/people" element={<SearchView />} />
-        <Route path="/search/movies" element={<SearchMoviesView />} />
-        <Route path="/search/tv" element={<SearchTvView />} /> */}
-        {/*search stuff !!*/}
         <Route path="/person/:id" element={<PersonView />}>
           <Route path="career" element={<CareerView />} />
           <Route path="images" element={<ImagesView />} />
         </Route>
-        {/*person stuff !!*/}
         <Route path="/movie/:id" element={<MovieView />}>
           <Route path="credits" element={<CreditsView />} />
           <Route path="reviews" element={<ReviewsView />} />
           <Route path="trailer" element={<TrailerView />} />
         </Route>
-        {/*tv stuff idk*/}
         <Route path="/tv/:id" element={<ViewTV />}>
           <Route path="seasons" element={<SeasonsView />} />
           <Route path="season/:season_number" element={<EpisodesView />} />
@@ -63,9 +56,7 @@ export const App = () => {
           <Route path="popular" element={<TelevisionView />} />
           <Route path="top-rated" element={<TelevisionView />} />
         </Route>
-        <Route path="/genre/:media/:genre" element={<GenreView />}>
-          {/*idk man*/}
-        </Route>
+        <Route path="/genre/:media/:genre" element={<GenreView />}></Route>
       </Route>
       <Route path="*" element={<ErrorView />} />
     </Routes>

@@ -20,7 +20,7 @@ export const SeasonsView = () => {
   const { data } = useTmdb<SeasonsResponse>(`${TV_ENDPOINT}/${id}`, {}, [id]);
 
   const gridData = mapToGridData(data?.seasons ?? [], (result) => ({
-    id: result.id,
+    id: result.season_number,
     imagePath: result.poster_path,
     primaryText: result.name,
     secondaryText: result.season_number
