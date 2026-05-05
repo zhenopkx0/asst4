@@ -1,12 +1,12 @@
-import { TrendingSubheader } from "../components/TrendingSubheader";
+import { TrendingSubheader } from "@/components/TrendingSubheader";
 import { Outlet, useLocation, useSearchParams } from "react-router-dom";
-import { ImageGrid } from "./../components/ImageGrid";
-import { Pagination } from "./../components/Pagination";
-import type { MediaResponse } from "./../core/Types";
-import { mapToGridData } from "../mapToGridData.ts/mapToGridData";
-import { useTmdb } from "../Hooks/useTmdb";
+import { ImageGrid } from "@/components/ImageGrid";
+import { Pagination } from "@/components/Pagination";
+import type { MediaResponse } from "@/core/Types";
+import { mapToGridData } from "@/mapToGridData.ts/mapToGridData";
+import { useTmdb } from "@/Hooks/useTmdb";
 import { useState } from "react";
-import { ButtonGroup } from "../components/ButtonGroup";
+import { ButtonGroup } from "@/components/ButtonGroup";
 
 const TV_ENDPOINT = "https://api.themoviedb.org/3/trending/tv";
 const MOVIE_ENDPOINT = "https://api.themoviedb.org/3/trending/movie";

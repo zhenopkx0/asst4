@@ -29,3 +29,31 @@ export const tvGenres = [
   { value: "mystery", name: "Mystery" },
   { value: "sci-fi", name: "Science Fiction" },
 ];
+
+export const GENRE_MAP = {
+  movies: {
+    action: 28,
+    adventure: 12,
+    animation: 16,
+    crime: 80,
+    family: 10751,
+    fantasy: 14,
+    history: 36,
+    horror: 27,
+    mystery: 9648,
+    romance: 10749,
+    "sci-fi": 878,
+  },
+  tv: {
+    action: 10759,
+    animation: 16,
+    comedy: 35,
+    crime: 80,
+    documentary: 99,
+    drama: 18,
+    family: 10751,
+    kids: 10762,
+    mystery: 9648,
+    "sci-fi": 10765,
+  },
+};

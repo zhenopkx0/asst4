@@ -1,11 +1,11 @@
-import { Button } from "../../components/Button";
-import { LinkGroup } from "../../components/LinkGroup";
-import { API_KEY, IMAGE_BASE_URL } from "../../core/Constants";
+import { Button } from "../../../components/Button";
+import { LinkGroup } from "../../../components/LinkGroup";
+import { API_KEY, IMAGE_BASE_URL } from "../../../core/Constants";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { FaCalendarAlt } from "react-icons/fa";
 import { Outlet, useNavigate, useParams } from "react-router-dom";
-import { Modal } from "../../components/Modal";
+import { Modal } from "../../../components/Modal";
 
 type DetailRepsonse = {
   id: number;

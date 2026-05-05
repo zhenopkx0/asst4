@@ -1,6 +1,6 @@
-import { ImageGrid } from "./../components/ImageGrid";
-import { mapToGridData } from "./../mapToGridData.ts/mapToGridData";
-import { useTmdb } from "./../Hooks/useTmdb";
+import { ImageGrid } from "../../components/ImageGrid";
+import { mapToGridData } from "../../mapToGridData.ts/mapToGridData";
+import { useTmdb } from "../../Hooks/useTmdb";
 import { useParams } from "react-router-dom";
 
 type CareerResponse = {

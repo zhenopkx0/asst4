@@ -8,37 +8,13 @@ import type { MediaResponse } from "../../core/Types";
 import { useTmdb } from "../../Hooks/useTmdb";
 import { mapToGridData } from "../../mapToGridData.ts/mapToGridData";
 import { LinkGroup } from "../../components/LinkGroup";
-
-export const GENRE_MAP = {
-  movies: {
-    action: 28,
-    adventure: 12,
-    animation: 16,
-    crime: 80,
-    family: 10751,
-    fantasy: 14,
-    history: 36,
-    horror: 27,
-    mystery: 9648,
-    romance: 10749,
-    "sci-fi": 878,
-  },
-  tv: {
-    action: 10759,
-    animation: 16,
-    comedy: 35,
-    crime: 80,
-    documentary: 99,
-    drama: 18,
-    family: 10751,
-    kids: 10762,
-    mystery: 9648,
-    "sci-fi": 10765,
-  },
-};
+import { GENRE_MAP } from "../../core/Constants";
 
 export const GenreView = () => {
   const { media, genre } = useParams();
+  if (!media || !genre) {
+    return <p className="text-center text-gray-400">Invalid route</p>;
+  }
   const { pathname } = useLocation();
   const MOVIES_ENDPOINT = "https://api.themoviedb.org/3/discover/movie";
   const TV_ENDPOINT = "https://api.themoviedb.org/3/discover/tv";
@@ -47,16 +23,26 @@ export const GenreView = () => {
 
   const [page, setPage] = useState<number>(1);
 
+  let genreId: number | undefined;
+
+  if (media === "movies") {
+    genreId = GENRE_MAP.movies[genre as keyof typeof GENRE_MAP.movies];
+  }
+
+  if (media === "tv") {
+    genreId = GENRE_MAP.tv[genre as keyof typeof GENRE_MAP.tv];
+  }
+
   const { data } = useTmdb<MediaResponse>(
     media === "movies" ? MOVIES_ENDPOINT : TV_ENDPOINT,
-    { page, with_genres: GENRE_MAP[media][genre] },
+    { page, with_genres: genreId },
     [page, genre, media]
   );
 
   const gridData = mapToGridData(data?.results ?? [], (result) => ({
     id: result.id,
     imagePath: result.poster_path,
-    primaryText: result.original_title,
+    primaryText: result.original_title ?? result.name,
   }));
 
   if (!data) {

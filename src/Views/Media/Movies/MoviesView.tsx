@@ -1,10 +1,10 @@
 import { Outlet, useLocation } from "react-router-dom";
-import { Subheader } from "../components/Subheader";
-import { ImageGrid } from "./../components/ImageGrid";
-import { Pagination } from "./../components/Pagination";
-import type { MediaResponse } from "./../core/Types";
-import { mapToGridData } from "../mapToGridData.ts/mapToGridData";
-import { useTmdb } from "../Hooks/useTmdb";
+import { Subheader } from "@/components/Subheader";
+import { ImageGrid } from "@/components/ImageGrid";
+import { Pagination } from "@/components/Pagination";
+import type { MediaResponse } from "@/core/Types";
+import { mapToGridData } from "@/mapToGridData.ts/mapToGridData";
+import { useTmdb } from "@/Hooks/useTmdb";
 import { useState } from "react";
 
 const NOWPLAYING_ENDPOINT = "https://api.themoviedb.org/3/movie/now_playing";

@@ -1,11 +1,11 @@
-import { ImageGrid } from "../../components/ImageGrid";
-import { Pagination } from "../../components/Pagination";
-import type { TvResponse } from "../../core/Types";
-import { mapToGridData } from "../../mapToGridData.ts/mapToGridData";
-import { useTmdb } from "../../Hooks/useTmdb";
+import { ImageGrid } from "../../../components/ImageGrid";
+import { Pagination } from "../../../components/Pagination";
+import type { TvResponse } from "../../../core/Types";
+import { mapToGridData } from "../../../mapToGridData.ts/mapToGridData";
+import { useTmdb } from "../../../Hooks/useTmdb";
 import { useState } from "react";
 import { Outlet, useLocation } from "react-router-dom";
-import { TVSubheader } from "../../components/TVSubheader";
+import { TVSubheader } from "../../../components/TVSubheader";
 
 const POPULAR_ENDPOINT = "https://api.themoviedb.org/3/tv/popular";
 const ONTHEAIR_ENDPOINT = "https://api.themoviedb.org/3/tv/on_the_air";

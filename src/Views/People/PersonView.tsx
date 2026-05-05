@@ -1,8 +1,8 @@
-import { useTmdb } from "../Hooks/useTmdb";
+import { useTmdb } from "../../Hooks/useTmdb";
 import { Outlet, useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import { LinkGroup } from "../components/LinkGroup";
-import { Button } from "../components/Button";
+import { LinkGroup } from "../../components/LinkGroup";
+import { Button } from "../../components/Button";
 
 type PersonResponse = {
   id: number;

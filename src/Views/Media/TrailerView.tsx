@@ -1,4 +1,4 @@
-import { API_KEY, MOVIE_ENDPOINT, TV_ENDPOINT } from "./../core/Constants";
+import { API_KEY, MOVIE_ENDPOINT, TV_ENDPOINT } from "../../core/Constants";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Outlet, useLocation, useParams } from "react-router-dom";

@@ -1,22 +1,24 @@
-import { MainLayout } from "./Layouts/MainLayout";
-import { ErrorView } from "./Views/ErrorView";
-import { HomeView } from "./Views/HomeView";
-import { CreditsView } from "./Views/CreditsView";
-import { MovieView } from "./Views/MovieView";
-import { ReviewsView } from "./Views/ReviewsView";
 import { Route, Routes } from "react-router-dom";
-import { MoviesView } from "./Views/MoviesView";
-import { TrendingView } from "./Views/TrendingView";
-import { GenreView } from "./Views/Genre/GenreView";
-import { TrailerView } from "./Views/TrailerView";
-import { ViewTV } from "./Views/tvStuff/ViewTV";
-import { SeasonsView } from "./Views/tvStuff/SeaonsView";
-import { EpisodesView } from "./Views/tvStuff/EpisodesView";
-import { PersonView } from "./Views/PersonView";
-import { CareerView } from "./Views/CareerView";
-import { ImagesView } from "./Views/ImagesView";
-import { SearchView } from "./Views/Search/SearchView";
-import { TelevisionView } from "./Views/TV/TelevisionView";
+import {
+  CareerView,
+  CreditsView,
+  EpisodesView,
+  ErrorView,
+  GenreView,
+  HomeView,
+  ImagesView,
+  MainLayout,
+  MoviesView,
+  MovieView,
+  PersonView,
+  ReviewsView,
+  SearchView,
+  SeasonsView,
+  TelevisionView,
+  TrailerView,
+  TrendingView,
+  ViewTV,
+} from "./Views/index";
 
 export const App = () => {
   return (

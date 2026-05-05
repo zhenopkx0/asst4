@@ -1,7 +1,7 @@
-import { ImageGrid } from "./../components/ImageGrid";
-import { MOVIE_ENDPOINT, TV_ENDPOINT } from "./../core/Constants";
-import { mapToGridData } from "../mapToGridData.ts/mapToGridData";
-import { useTmdb } from "./../Hooks/useTmdb";
+import { ImageGrid } from "../../components/ImageGrid";
+import { MOVIE_ENDPOINT, TV_ENDPOINT } from "../../core/Constants";
+import { mapToGridData } from "../../mapToGridData.ts/mapToGridData";
+import { useTmdb } from "../../Hooks/useTmdb";
 import { useLocation, useParams } from "react-router-dom";
 
 type CreditsResponse = {
