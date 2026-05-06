@@ -56,8 +56,9 @@ export const GenreView = () => {
           {
             label: "Movies",
             to: "/genre/movies/action",
+            match: ["genre/movies/:genre"],
           },
-          { label: "TV", to: "/genre/tv/action" },
+          { label: "TV", to: "/genre/tv/action", match: ["genre/tv/:genre"] },
         ]}
       />
       {media === "movies" ? (
