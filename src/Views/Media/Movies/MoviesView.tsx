@@ -1,4 +1,4 @@
-import { Outlet, useLocation } from "react-router-dom";
+import { Outlet, useLocation, useParams } from "react-router-dom";
 import { Subheader } from "@/components/Subheader";
 import { ImageGrid } from "@/components/ImageGrid";
 import { Pagination } from "@/components/Pagination";
@@ -15,6 +15,7 @@ const UPCOMINGENDPOINT = "https://api.themoviedb.org/3/movie/upcoming";
 export const MoviesView = () => {
   const { pathname } = useLocation();
   const [page, setPage] = useState<number>(1);
+  const { category } = useParams();
   const ENDPOINT = pathname.includes("popular")
     ? POPULAR_ENDPOINT
     : pathname.includes("now-playing")
@@ -39,7 +40,7 @@ export const MoviesView = () => {
     <div>
       <Subheader />
       <Outlet />
-      <section className="max-w-[1200px] mx-auto p-5 space-y-5">
+      <section className="max-w-300 mx-auto p-5 space-y-5">
         <ImageGrid results={gridData} getHref={(id) => `/movie/${id}`} />
         <Pagination page={page} maxPages={data.total_pages} onClick={setPage} />
       </section>

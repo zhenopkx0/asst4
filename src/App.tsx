@@ -18,7 +18,7 @@ import {
   TrailerView,
   TrendingView,
   ViewTV,
-} from "./Views/index";
+} from "@/views/index";
 
 export const App = () => {
   return (

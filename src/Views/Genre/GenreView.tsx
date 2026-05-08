@@ -62,13 +62,12 @@ export const GenreView = () => {
         ]}
       />
       {media === "movies" ? (
-        <div>
-          {movieGenres.map((genre) => (
-            <Link key={genre.value} to={`/genre/movies/${genre.value}`}>
-              {genre.name}
-            </Link>
-          ))}
-        </div>
+        <LinkGroup
+          options={movieGenres.map((g) => ({
+            label: g.name,
+            to: `/genre/movies/${g.value}`,
+          }))}
+        />
       ) : (
         <div>
           {tvGenres.map((genre) => (
